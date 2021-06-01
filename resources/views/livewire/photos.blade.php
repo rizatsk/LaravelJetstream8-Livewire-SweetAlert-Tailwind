@@ -12,7 +12,6 @@
      </script>
     @endif
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
-      <h1>Hello <span class="uppercase">{{Auth::user()->name}}</span></h1>
       <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
             <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
                 <g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -24,26 +23,27 @@
             <div class="m-2">
                 <div class="flex justify-between">
                     <div>
-                        <button wire:click.prevent="getModal" class="bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-full py-1 px-6 bg-red-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Click to Input Data</button>
+                        <button wire:click.prevent="getModal" class="bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-full py-1 px-6 bg-red-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Click to create photo</button>
+                        @if($openModal)
+                            @if($showUpdate)
+                                @include('livewire.photos-update')
+                            @else
+                                @include('livewire.photos-create')
+                            @endif
+                        @endif
                     </div>
-                    <div>
+                    {{-- <div>
                         <select wire:model="paginate" name="" id="" class="form-control py-1 rounded-full w-full">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div>
                         <input wire:model="search" name="search" id="search" class="form-control py-1 rounded-lg w-full" type="text" placeholder="Search...">
                     </div>
                 </div>
-                @if($openModal)
-                    @if($update)
-                        @include('livewire.updatePosts')
-                    @else
-                        @include('livewire.createPosts')
-                    @endif
-                @endif
+               
                <table class="table-fixed w-full mt-2">
                    <thead class="bg-gradient-to-r from-green-400 to-blue-500 text-white">
                      <tr>
@@ -55,22 +55,22 @@
                    </thead>
                    <tbody>
                        <?php $no = 0; ?>
-                       @foreach ($posts as $post) 
+                       @foreach ($photos as $photo)
                        <?php $no++ ?>
                        <tr>
                            <td>{{$no}}</td>
-                           <td>{{$post->title}}</td>
-                           <td>{{$post->description}}</td>
+                           <td>{{$photo->name}}</td>
+                           <td><img src="{{url('storage/'.$photo->photoProfile)}}" alt="{{$photo->photoProfile}}" style="max-width: 60px"></td>
                            <td>
-                               <button wire:click.prevent="showUpdate({{$post->id}})" class="rounded-full py-1 px-6 m-2 bg-blue-500 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Edit</button>
-                               <button wire:click.prevent="$emit('destroy',({{$post->id}}))" class="rounded-full py-1 px-6 m-2 bg-red-500 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">Delete</button>
+                               <button wire:click.prevent="edit({{$photo->id}})" class="rounded-full py-1 px-6 m-2 bg-blue-500 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Edit</button>
+                               <button wire:click.prevent="$emit('destroy',({{$photo->id}}))" class="rounded-full py-1 px-6 m-2 bg-red-500 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">Delete</button>
                              </td>
                          </tr>
                          @endforeach
                      </tbody>
                  </table>
-                 {{$posts->links()}}
-               </div>
+                </div>
+                {{$photos->links()}}
         </div>
     </div>
 </div>
@@ -114,3 +114,5 @@
 </script>
 @endpush
 {{-- end sweet alert --}}
+
+
