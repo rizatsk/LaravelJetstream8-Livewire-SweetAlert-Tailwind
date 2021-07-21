@@ -38,7 +38,7 @@
           
           <div class="flex justify-between mt-4">
             <div class="col">
-              <select wire:model="paginate" name="" id="" class="form-control form-control-sm py-1 rounded-lg w-auto">
+              <select wire:model="paginate" id="" class="form-control form-control-sm py-1 rounded-lg w-auto">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>

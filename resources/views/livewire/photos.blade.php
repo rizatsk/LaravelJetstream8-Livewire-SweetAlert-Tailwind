@@ -64,7 +64,7 @@
                            <td>
                                <button wire:click.prevent="edit({{$photo->id}})" class="rounded-full py-1 px-6 m-2 bg-blue-500 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Edit</button>
                                <button wire:click.prevent="$emit('destroy',({{$photo->id}}))" class="rounded-full py-1 px-6 m-2 bg-red-500 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">Delete</button>
-                             </td>
+                              </td>
                          </tr>
                          @endforeach
                      </tbody>
@@ -74,7 +74,6 @@
         </div>
     </div>
 </div>
-
 {{-- sweet alert for Delete --}}
 @push('script')
 <script>
@@ -114,5 +113,3 @@
 </script>
 @endpush
 {{-- end sweet alert --}}
-
-

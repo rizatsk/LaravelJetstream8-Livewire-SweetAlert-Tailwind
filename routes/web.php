@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\PostsController;
+// use App\Http\Livewire\UploadController;
 use App\Http\Livewire\Photos;
 use App\Http\Livewire\Posts;
-use App\Http\Livewire\Student\Index;
+// use App\Http\Livewire\Student\Index;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', Posts::class)->name('posts');
-
+Route::post('/upload',[PostsController::class,'store']);
 Route::get('/photos', Photos::class)->name('photos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

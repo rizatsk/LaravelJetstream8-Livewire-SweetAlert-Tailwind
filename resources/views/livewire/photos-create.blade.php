@@ -57,7 +57,7 @@
                         </div>
                         <div class="w-full mt-4">
                           <label for="file" class="block">Photo</label>
-                          <input wire:model="file" class="form-control py-3 rounded-lg w-full" type="file" id="file" name="file">
+                          <input wire:model="file" class="form-control py-3 rounded-lg w-full" type="file" id="filepond" class="filepond" name="filepond">
                           {{-- jika ada file gambar maka tampilkan gambarnya  --}}
                           @if ($file)
                           <img alt="profile image" style="max-width:130px;margin-top:20px" src="{{ $file->temporaryUrl() }}">
@@ -86,3 +86,4 @@
     </div>
   </div>
 </div>
+

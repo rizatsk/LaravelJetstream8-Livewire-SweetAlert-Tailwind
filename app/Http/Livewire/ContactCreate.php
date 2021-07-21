@@ -8,7 +8,7 @@ use Livewire\Component;
 class ContactCreate extends Component
 {
     public $name,
-            $phone;
+           $phone;
     
     public function render()
     {
