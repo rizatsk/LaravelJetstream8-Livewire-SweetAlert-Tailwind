@@ -18,12 +18,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
-Route::get('/posts', Posts::class)->name('posts');
-Route::post('/upload',[PostsController::class,'store']);
-Route::get('/photos', Photos::class)->name('photos');
+Route::group(['middleware' => 'auth:sanctum'],function(){
+    Route::get('/posts', Posts::class)->name('posts');
+    Route::post('/upload',[PostsController::class,'store']);
+    Route::get('/photos', Photos::class)->name('photos');
+    Route::get('/input-data', function() { return view('input-data'); });
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
