@@ -51,6 +51,7 @@
     <div class="col-sm-6">
       @if ( $idCategory === null)
         <h4>All Products</h1>
+          <input wire:model="search" type="text" class="form-control form-control-sm py-1 rounded-lg w-auto" placeholder="Search">
           <table class="table">
               <thead>
                   <tr>

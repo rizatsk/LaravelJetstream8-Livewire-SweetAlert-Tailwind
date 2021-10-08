@@ -16,14 +16,19 @@ class TampilanData extends Component
     public  $idSubCategory,
             $idSubCategoryCreateProduct,
             $idCategory,
-            $nameCategory;
+            $nameCategory,
+            $search;
 
     public function render()
     {
         return view('livewire.tampilan-data',[
             'subCategories' => SubCategory::all(), //nampilkan data sub category
             'categories' => Category::all(), //menampilkan category sesuai data idSubCategory
-            'products' => Product::latest()->paginate(5),
+            
+            'products' => $this->search === null ?
+                Product::latest()->paginate(5) : 
+                Product::where('product', 'like', '%'.$this->search.'%')->paginate(5),
+                
             'dataProductCategory' => Product::latest()->where('idCategory', $this->idCategory)->paginate(1),
             'dataSubCategory' => SubCategory::where('idSubCategory', $this->idSubCategory)->first(),
         ]);
