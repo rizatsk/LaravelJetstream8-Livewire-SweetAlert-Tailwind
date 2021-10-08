@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post('/upload',[PostsController::class,'store']);
     Route::get('/photos', Photos::class)->name('photos');
     Route::get('/input-data', function() { return view('input-data'); });
+    Route::get('/tampilan-data', function() { return view('tampilanData'); });
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

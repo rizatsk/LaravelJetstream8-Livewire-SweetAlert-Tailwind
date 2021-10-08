@@ -45,7 +45,7 @@
             </div>
           </div>
         </div> --}}
-
+        
         {{-- Create Sub Category --}}
         <div class="mt-4">
           <livewire:create-sub-category></livewire:create-sub-category>
