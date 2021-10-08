@@ -51,7 +51,7 @@
     <div class="col-sm-6">
       @if ( $idCategory === null)
         <h4>All Products</h1>
-          <input wire:model="search" type="text" class="form-control form-control-sm py-1 rounded-lg w-auto" placeholder="Search">
+          <input wire:model="search" type="text" class="form-control form-control-sm py-1 rounded-lg w-auto" placeholder="Search Product">
           <table class="table">
               <thead>
                   <tr>
@@ -63,15 +63,23 @@
                   </tr>
               </thead>
               <tbody>
-                @foreach ($products as $product)
-                  <tr>
-                    <td>{{$product->idCategory}}</td>
-                    <td>{{$product->idProduct}}</td>
-                    <td>{{$product->product}}</td>
-                    <td>{{$product->deskripsiProduct}}</td>
-                    <td><img src="{{url('storage/'.$product->photoProduct)}}" alt="{{$product->photoProduct}}" style="max-width: 60px"></td>
-                  </tr>
-                @endforeach
+                @if ($products[0] === null)
+                <tr>
+                  <td colspan="5" class="text-center">
+                    <h5>Product Tidak Ditemukan !</h5>
+                  </td>
+                </tr>
+                @else
+                    @foreach ($products as $product)
+                    <tr>
+                      <td>{{$product->idCategory}}</td>
+                      <td>{{$product->idProduct}}</td>
+                      <td>{{$product->product}}</td>
+                      <td>{{$product->deskripsiProduct}}</td>
+                      <td><img src="{{url('storage/'.$product->photoProduct)}}" alt="{{$product->photoProduct}}" style="max-width: 60px"></td>
+                    </tr>
+                    @endforeach
+                @endif
               </tbody>
           </table>
           <div class="m-auto">
