@@ -6,9 +6,13 @@ use Livewire\Component;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
+use Livewire\WithPagination;
 
 class TampilanData extends Component
 {
+    use WithPagination;
+ 
+    protected $paginationTheme = 'bootstrap';
     public  $idSubCategory,
             $idSubCategoryCreateProduct,
             $idCategory,
@@ -19,8 +23,8 @@ class TampilanData extends Component
         return view('livewire.tampilan-data',[
             'subCategories' => SubCategory::all(), //nampilkan data sub category
             'categories' => Category::all(), //menampilkan category sesuai data idSubCategory
-            'products' => Product::all(),
-            'product' => Product::all()->where('idCategory', $this->idCategory),
+            'products' => Product::latest()->paginate(5),
+            'dataProductCategory' => Product::latest()->where('idCategory', $this->idCategory)->paginate(1),
             'dataSubCategory' => SubCategory::where('idSubCategory', $this->idSubCategory)->first(),
         ]);
     }

@@ -73,6 +73,9 @@
                 @endforeach
               </tbody>
           </table>
+          <div class="m-auto">
+            {{$products->links()}}
+          </div>
       @else
       <h4>{{$dataSubCategory->subCategory}}/{{$nameCategory}}</h1>
       <table class="table">
@@ -86,7 +89,7 @@
               </tr>
           </thead>
           <tbody>
-              @foreach ($product as $product)
+              @foreach ($dataProductCategory as $product)
               <tr>
                   <td>{{$product->idCategory}}</td>
                   <td>{{$product->idProduct}}</td>
@@ -97,6 +100,9 @@
               @endforeach
           </tbody>
       </table>
+        <div class="m-auto">
+          {{$dataProductCategory->links()}}
+        </div>
       @endif
     </div>
 </div>
