@@ -17,6 +17,14 @@ main {
   overflow-y: hidden;
 }
 
+.auto{
+  display:block;
+  padding:5px;
+  margin-top:5px;
+  height:50px;
+  overflow:auto;
+}
+
 #nav-left{
   height: 100px;
 }
@@ -43,6 +51,11 @@ main {
   border-radius: 0;
 }
 
+.btn-check:focus+.btn, .btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
 .btn-toggle {
   display: inline-flex;
   align-items: center;
@@ -52,10 +65,8 @@ main {
   background-color: transparent;
   border: 0;
 }
-.btn-toggle:hover,
-.btn-toggle:focus {
-  color: rgba(0, 0, 0, .85);
-  background-color: #d2f4ea;
+.btn-toggle:hover{
+  background-color: #e1e1e1;
 }
 
 .btn-toggle::before {
@@ -79,12 +90,15 @@ main {
   margin-top: .125rem;
   margin-left: 1.25rem;
   text-decoration: none;
+  cursor: pointer;
 }
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
-  background-color: #d2f4ea;
+  background-color: #e1e1e1;
 }
-
+.btn-toggle-nav .active{
+  background-color: #e1e1e1;
+}
 .scrollarea {
   overflow-y: auto;
 }

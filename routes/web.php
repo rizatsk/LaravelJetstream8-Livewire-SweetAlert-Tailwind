@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
 
 Route::group(['middleware' => 'auth:sanctum'],function(){
+    Route::get('/', function () {
+    return view('dashboard');
+    });
     Route::get('/posts', Posts::class)->name('posts');
     Route::post('/upload',[PostsController::class,'store']);
     Route::get('/photos', Photos::class)->name('photos');

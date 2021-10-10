@@ -7,22 +7,22 @@
       </svg>
         <span class="ms-3 fs-5 fw-semibold">Category Product</span>
       </a>
-      <ul class="list-unstyled ps-0">
+      <ul class="list-unstyled ps-0 auto" style="height: 200px">
         <li class="mb-1">
           <a wire:click.prevent="allProduct" class="btn align-items-center rounded" aria-expanded="false">
             <h6>All Product</h6>
           </a>
         </li>
         @foreach ($subCategories as $subCategory)
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#{{$subCategory->idSubCategory}}" aria-expanded="false">
+          <li class="mb-1 me-4">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#{{$subCategory->idSubCategory}}" aria-expanded="{{$idSubCategory === $subCategory->idSubCategory ? 'true' : 'false'}}">
               {{$subCategory->subCategory}}
             </button>
-          <div class="collapse" id="{{$subCategory->idSubCategory}}">
+          <div class="collapse {{$idSubCategory === $subCategory->idSubCategory ? 'show' : ''}}" id="{{$subCategory->idSubCategory}}">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               @foreach ($categories as $category)
                 @if ($subCategory->idSubCategory === $category->idSubCategory)
-                  <li><a wire:click.prevent="getIdCategory('{{$category->idCategory}}','{{$category->category}}','{{$subCategory->idSubCategory}}')" class="link-dark rounded">{{$category->category}}</a></li>
+                  <li><a wire:click.prevent="getIdCategory('{{$category->idCategory}}','{{$category->category}}','{{$subCategory->idSubCategory}}')" class="link-dark rounded {{$category->category === $nameCategory ? 'active' : ''}}">{{$category->category}}</a></li>
                 @endif
               @endforeach
             </ul>
@@ -60,6 +60,7 @@
                       <th scope="col">Product</th>
                       <th scope="col">Deskripsi Product</th>
                       <th scope="col">Photo Product</th>
+                      <th scope="col">Time Create</th>
                   </tr>
               </thead>
               <tbody>
@@ -77,6 +78,7 @@
                       <td>{{$product->product}}</td>
                       <td>{{$product->deskripsiProduct}}</td>
                       <td><img src="{{url('storage/'.$product->photoProduct)}}" alt="{{$product->photoProduct}}" style="max-width: 60px"></td>
+                      <td>{{$product->created_at->diffForHumans()}}</td>
                     </tr>
                     @endforeach
                 @endif

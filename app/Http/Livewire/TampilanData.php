@@ -39,9 +39,11 @@ class TampilanData extends Component
         $this->nameCategory = $category;
         $this->idSubCategory = $idSubCategory;
     }
-
+    
     public function allProduct(){
         $this->idCategory = null;
+        $this->nameCategory = null;
+        $this->idSubCategory = null;
     }
 
 }
