@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>Hello, world!</h1>
+        <h1>Orang Ganteng</h1>
 
         <div class="mt-4">
           <livewire:tampilan-data></livewire:tampilan-data>
